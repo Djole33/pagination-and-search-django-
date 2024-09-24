@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Movies</title>
+</head>
+<body>
+    <form action="" method="get">
+        <input type="search" name="movie_name" />
+        <button type="submit">Search</button>
+    </form>
+
+    {% for movie in all_movies %}
+     <h2>{{ movie.name }}</h2>
+    {% endfor %}
+
+    {% if all_movies.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ all_movies.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    Page: {{ all_movies.number }} of {{ all_movies.paginator.num_pages }} <br />
+    
+    {% if all_movies.has_next %}
+        <a href="?page={{ all_movies.next_page_number }}">Next</a>
+        <a href="?page={{ all_movies.paginator.num_pages }}">Last</a>
+    {% endif %}
+
+</body>
+</html>
